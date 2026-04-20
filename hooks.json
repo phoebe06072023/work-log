@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CODEX_HOME/worklog-hook/cache_user_prompt.py\"",
+            "statusMessage": "Caching prompt for worklog"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "WORKLOG_REPO_DIR=\"$PWD/work-log\" CODEX_WORKLOG_MODE=\"optimized\" python3 \"$PWD/work-log/log_turn.py\"",
+            "statusMessage": "Writing worklog entry",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}
